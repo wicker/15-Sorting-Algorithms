@@ -1,6 +1,7 @@
 #include "stdio.h"
 
 #define ARGS 3
+#define DATAPOINTS 10
 
 int instructions();
 int exit_program();
@@ -11,6 +12,7 @@ int main(int argc, char *argv[]) {
   if (argc != ARGS)
     return instructions();
 
+  int i;
   int sortnum = atoi(argv[1]);
   FILE * filein = fopen(argv[2],"r");
   if (filein == NULL) {
@@ -19,9 +21,17 @@ int main(int argc, char *argv[]) {
     return 0;
   }
 
+  int data_array[DATAPOINTS];
+  for (i = 0; i < DATAPOINTS; i++) {
+    fscanf(filein, "%d,", &data_array[i]);
+    printf("data_array[%d] = %d\n",i,data_array[i]);
+  }
+
   switch(sortnum) {
     case 1:
       printf("#1 - Selection Sort\n");
+//    load_data();
+//    selection_sort();
       break;
     case 2:
       printf("#2 - Insertion Sort\n");
