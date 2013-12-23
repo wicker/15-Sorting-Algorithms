@@ -5,6 +5,7 @@
 
 int instructions();
 int exit_program();
+int selection_sort(int * data);
 
 // take arguments for sort number and data file
 int main(int argc, char *argv[]) {
@@ -24,14 +25,15 @@ int main(int argc, char *argv[]) {
   int data_array[DATAPOINTS];
   for (i = 0; i < DATAPOINTS; i++) {
     fscanf(filein, "%d,", &data_array[i]);
-    printf("data_array[%d] = %d\n",i,data_array[i]);
   }
 
   switch(sortnum) {
     case 1:
       printf("#1 - Selection Sort\n");
-//    load_data();
-//    selection_sort();
+      selection_sort(data_array);
+      for (i = 0; i < DATAPOINTS; i++) {
+        printf("data_array[%d] = %d\n",i,data_array[i]);
+      }
       break;
     case 2:
       printf("#2 - Insertion Sort\n");
@@ -80,6 +82,15 @@ int main(int argc, char *argv[]) {
   }
       exit_program();
 
+}
+
+int selection_sort(int * data) {
+  int i;
+  for (i = 0; i < DATAPOINTS; i++) {
+    printf("data[%d] = %d\n",i,data[i]);
+    data[i] = DATAPOINTS - i;
+  }
+  return 0;
 }
 
 int exit_program() {
