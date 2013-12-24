@@ -8,6 +8,7 @@ typedef enum { false, true } bool;
 int instructions();
 int exit_program(int);
 int selection_sort(int * data);
+int insertion_sort(int * data);
 int check_sorted(int * data);
 void print_array(int * data);
 
@@ -44,6 +45,7 @@ int main(int argc, char *argv[]) {
       break;
     case 2:
       printf("#2 - Insertion Sort\n");
+      insertion_sort(data_array);
       break;
     case 3:
       printf("#3 - Quick Sort\n");
@@ -114,6 +116,18 @@ int selection_sort(int * data) {
   }
 
   return min;
+}
+
+int insertion_sort(int * data) {
+  int i,min;
+  for (i = 1; i < DATAPOINTS; i++) {
+    min = data[i];
+    while (data[i] < data[i-1]) {
+      data[i] = data[i-1];      
+      data[i-1] = min;
+      i--;
+    }
+  }
 }
 
 int check_sorted(int * data) {
