@@ -1,7 +1,7 @@
 #include "stdio.h"
 
 #define ARGS 3
-#define DATAPOINTS 10
+#define DATAPOINTS 4
 
 typedef enum { false, true } bool;
 
@@ -11,6 +11,8 @@ int selection_sort(int * data);
 int insertion_sort(int * data);
 int check_sorted(int * data);
 void print_array(int * data);
+int quicksort(int * data, int left, int right);
+int partition(int * data, int left, int right, int pindex);
 
 // take arguments for sort number and data file
 int main(int argc, char *argv[]) {
@@ -49,6 +51,10 @@ int main(int argc, char *argv[]) {
       break;
     case 3:
       printf("#3 - Quick Sort\n");
+      int left = 0;
+      int right = sizeof(data_array)/4;
+      while (check_sorted(data_array) == 1)
+        quicksort(data_array, left, right);
       break;
     case 4:
       printf("#4 - Merge Sort\n");
@@ -128,6 +134,52 @@ int insertion_sort(int * data) {
       i--;
     }
   }
+}
+
+int quicksort(int * data, int left, int right) {
+  int pindex = 0;
+  printf("left: %d right: %d\n",left,right);
+  if (left < right) {
+    pindex = (right - left)/2;
+    pindex = partition(data, left, right, pindex);
+    quicksort(data, left, pindex-1);
+    quicksort(data, pindex+1, right);
+  printf("quicksort reporting.\n");
+  print_array(data);
+  }
+}
+
+// pivot index = pindex
+// store index = stindex
+int partition(int * data, int left, int right, int pindex) {
+  int i,s,t, stindex;
+
+  // move the pivot to the end of the partition
+  t = data[pindex];
+  data[pindex] = data[right];
+  data[right] = t;
+
+  // store the left index
+  stindex = left;
+
+  // step through each element of the partition
+  for (i = left; i < right; i++) {
+    // if the element contains a value smaller than the pivot element,
+    // swap it for the stored index and increment the stored index
+    if (data[i] <= t) {
+      t = data[i];
+      data[i] = data[stindex];
+      data[stindex] = t;
+      stindex++;
+    }
+  }
+
+  s = data[stindex];
+  data[stindex] = data[right];
+  data[right] = s;
+  printf("partition reporting.\n");
+  print_array(data);
+  return stindex;
 }
 
 int check_sorted(int * data) {
