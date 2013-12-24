@@ -3,8 +3,8 @@
 
 Implementing the algorithms in Timo Bingmann's video.
 
-Selection sort  
-Insertion sort  
+~~Selection sort~~  
+~~Insertion sort~~   
 Quicksort  
 Merge sort  
 Heap sort  
