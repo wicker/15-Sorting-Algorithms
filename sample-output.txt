@@ -1,0 +1,17 @@
+======================================
+  ALL SORTS OF SORTS
+======================================
+
+Initial Array: 
+10 9 8 1 4 3 4 3 2 1 
+
+#1 - Selection Sort
+
+Final Sorted Array:
+1 1 2 3 3 4 4 8 9 10 
+
+Array sorted correctly! This algorithm did its job.
+Program successfully completed.
+
+======================================
+
