@@ -26,11 +26,12 @@ int main(int argc, char *argv[]) {
     return 0;
   }
 
-  int data_array[DATAPOINTS];
   printf("======================================\n");
   printf("\tALL SORTS OF SORTS\n");
   printf("======================================\n\n");
   printf("Initial Array: \n");
+
+  int data_array[DATAPOINTS];
   for (i = 0; i < DATAPOINTS; i++) {
     fscanf(filein, "%d,", &data_array[i]);
   }
@@ -40,9 +41,6 @@ int main(int argc, char *argv[]) {
     case 1:
       printf("#1 - Selection Sort\n");
       selection_sort(data_array);
-      
-      printf("\nFinal Sorted Array:\n");
-      print_array(data_array);
       break;
     case 2:
       printf("#2 - Insertion Sort\n");
@@ -89,7 +87,9 @@ int main(int argc, char *argv[]) {
     default:
       printf("Improper sort number. Range 1-15.\n");
   }
-      exit_program(check_sorted(data_array));
+  printf("\nFinal Sorted Array:\n");
+  print_array(data_array);
+  exit_program(check_sorted(data_array));
 }
 
 int selection_sort(int * data) {
